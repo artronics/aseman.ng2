@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { TreeNodeWidgetComponent, TreeNodeWidget } from "../../widgets/tree-node-widget.component";
+import { TreeNodeWidgetComponent} from "../../widgets/tree-node-file-widget.component";
 import { FileService, FileType, File } from "../../../../services/file/file.service";
+import { TreeNodeWidget } from "../../widgets/TreeNodeWidget";
+import { ExpandCollapseEvent } from "../../widgets/ExpandCollapseEvent";
 
 @Component({
   moduleId: module.id,
@@ -35,16 +37,22 @@ export class NavigatorViewComponent implements OnInit {
     return w;
   }
 
-  onExpanded(parentIndentLevel:number,inx:number){
-    console.log(`p indent: ${parentIndentLevel}` +inx);
-
+  onExpanded(expOrColEvent:ExpandCollapseEvent,inx:number){
+    /* expand */
     let childerFiles:File[] =this._fileService.getFiles(this._projectRoot+'/'+'src');
-    console.log(childerFiles);
-    let childerenNodes:TreeNodeWidget[]=this.treeNodesFactory(childerFiles);
-    for(let node of childerenNodes){
-      node.indentLevel=++parentIndentLevel;
-      this._treeNodes.splice(++inx,0,node);
+    if(expOrColEvent.expandOrCollapse){
+      let childerenNodes:TreeNodeWidget[]=this.treeNodesFactory(childerFiles);
+      for(let node of childerenNodes){
+        node.indentLevel=++expOrColEvent.indentLevel;
+        this._treeNodes.splice(++inx,0,node);
+      }
     }
+    /* expand */
+    else {
+      let length:number=childerFiles.length;
+      this._treeNodes.splice(++inx,length);
+    }
+
     // this._treeNodes.splice(++inx,0,childerenNodes);
   }
 
