@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let node of treeNodes; let inx=index">
+    <asm-tree-node-wgt [node]="node" (onExpanded)="onExpanded($event,inx)"></asm-tree-node-wgt>
+  </li>
+</ul>

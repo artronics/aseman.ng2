@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Aseman</title>
+  <base href="/">
+
+  {{#unless environment.production}}
+  <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
+  {{/unless}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />-->
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+  <aseman-app>Loading...</aseman-app>
+
+  <my-app></my-app>
+
+    {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}
+    <script>
+      System.import('system-config.js').then(function () {
+        System.import('main');
+      }).catch(console.error.bind(console));
+    </script>
+
+
+
+
+
+</body>
+</html>

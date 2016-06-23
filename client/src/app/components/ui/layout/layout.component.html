@@ -1,0 +1,37 @@
+<div class="layout" (mouseup)="onMouseup($event)" (mousemove)="onMousemove($event)">
+  <div class="asm_menubar_layout">
+    <asm-menubar></asm-menubar>
+  </div>
+  <div class="asm_toolbar">
+    <p>toolbar</p>
+  </div>
+
+  <div class="asm_container">
+    <div class="asm_nav" #asm_nav>
+      <div class="asm_tabular">
+        <div class="asm_tabbar">
+          <ul class="asm_tabs">
+            <li *ngFor="let tab of tabsTitles">{{tab}}</li>
+          </ul>
+          <ul class="asm_tab-icons">
+            <li (click)="navSettingCntxMenu()"><i class="fa fa-cog" aria-hidden="true"></i></li>
+          </ul>
+        </div>
+        <div class="asm_tab-h-separator"></div>
+        <div class="asm_tab-content">
+          <asm-navigator-view></asm-navigator-view>
+        </div>
+      </div>
+    </div>
+    <div class="asm_v-anchor asm_resize-anchor"  (asm-on-resize)="onResize($event)" [asm-resize]="asm_nav" [asm-resize-axis]="'vertical'"></div>
+    <div class="asm_editor">
+      <p>editor</p>
+    </div>
+  </div>
+
+  <div class="asm_h-anchor asm_resize-anchor" (asm-on-resize)="onResize($event)" [asm-resize]="asm_info" [asm-resize-axis]="'horizontal'"></div>
+  <div class="asm_info" #asm_info>
+    <p>info</p>
+  </div>
+  <div class="asm_bottom-anchor"></div>
+</div>

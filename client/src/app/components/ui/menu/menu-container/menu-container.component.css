@@ -1,0 +1,14 @@
+.asm_menuList{
+  padding-top: .2em;
+  position: absolute;
+  z-index: 100;
+  /*we need this for alighning hover area with title. I test it with menubar not context menu */
+  left:-1em;
+  /* These are theme related. but i dont know why it doesn't work inside theme*/
+  background-color: #6f7678;
+}
+.asm_menuList li{
+  padding-left:2em;
+  padding-right:.5em;
+  display: block;
+}

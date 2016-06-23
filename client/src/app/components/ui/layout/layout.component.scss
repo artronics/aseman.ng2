@@ -1,0 +1,175 @@
+@import "./themes/dark/variables";
+@import "./_flex.scss";
+
+@import "partials/partials";
+//RESET all margins and paddings to ZERO
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+
+  /* Disable text selection*/
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                         not supported by any browser */
+
+  cursor: default;
+}
+
+html, body {
+  height: 100%;
+  background-color: red; //debug
+}
+
+/*  Variables based on theme */
+$base-border-color:darken($ide-base-background-color,5);
+$selected-tab-background-color:$base-border-color;
+
+/*
+  General Classes
+*/
+.asm{
+  .hidden{visibility: hidden}
+}
+.ide {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $ide-base-background-color;
+  color: $ide-text-color;
+}
+
+.layout {
+  @extend %flexbox;
+  @include flex-direction(column);
+  height: 100%;
+}
+
+.asm_container {
+  @extend %flexbox;
+  @include flex-grow(1);
+}
+
+.asm_nav {
+  width: 500px;
+  //min-width:500px;
+  @extend %flexbox;
+  @include flex-direction(column);
+}
+
+.asm_editor {
+  width: 100%;
+}
+
+.asm_info {
+  height: 10vh;
+  /*min hieght must be same as heigh. otherwise overflow push it down*/
+  min-height: 10vh;
+}
+
+//I added this class to span resize anchor with ... but it messed up with hover
+//.asm_resize-anchor{
+//  margin:auto;
+//  span{
+//    font-size: xx-small;
+//  }
+//}
+.asm_v-anchor {
+  width: 3px;
+  &:hover {
+    cursor: col-resize;
+  }
+}
+
+.asm_h-anchor {
+  height: 3px;
+  &:hover {
+    cursor: row-resize;
+  }
+}
+
+.asm_bottom-anchor {
+  @include flex-grow(0);
+}
+
+.flex-container {
+  @extend %flexbox;
+  @include flex-flow(row wrap);
+  @include justify-content(flex-start);
+}
+
+/* Tabular */
+.asm_tabbar {
+  @extend %flexbox;
+}
+
+.asm_tabbar li {
+  display: block;
+  padding: 0em .5em 0 .5em;
+  margin: auto;
+  line-height:2em;
+  //debug
+  &:hover{
+    background-color: $selected-tab-background-color;
+  }
+}
+
+.asm_tabs {
+  @extend %flexbox;
+  @include align-items(center);
+  li{
+    border-right:solid 1px $selected-tab-background-color;
+  }
+}
+
+.asm_tab-icons {
+  @extend %flexbox;
+  @include align-items(center);
+  margin-left: auto;
+}
+
+
+
+
+/* Themes  only */
+
+.asm_menuHover>li:hover{
+  background-color: $menu-selection-color;
+}
+
+.asm_resize-anchor{
+  background-color:$base-border-color ;
+}
+.asm_menubar{
+  height: 1.5em;
+  border-bottom:solid $base-border-color 1px;
+  background-color: lighten($ide-base-background-color,10);
+}
+.asm_toolbar{
+  height:2em;
+  border-bottom: solid $base-border-color 1px;
+}
+
+.asm_tab-content{
+  //margin-left: .5em;
+}
+.asm_tab-h-separator{
+  height:3px;
+  background-color: $selected-tab-background-color;
+}
