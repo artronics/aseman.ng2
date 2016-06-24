@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { NgClass, NgStyle } from "@angular/common";
-import { FileType } from "../../../services/file/file.service";
 import { TreeNodeWidget } from "./TreeNodeWidget";
 import { ExpandCollapseEvent } from "./ExpandCollapseEvent";
+import { FileType } from "../../../shared/models/File";
 @Component({
   moduleId: module.id,
   selector: 'asm-tree-node-wgt',
@@ -10,7 +10,7 @@ import { ExpandCollapseEvent } from "./ExpandCollapseEvent";
   template: `
 <span class="asm_widget asm" [ngStyle]="{'padding-left':padding}">
   <i (click)="toggleExpand()" [ngClass]="expandableIcon"></i>
-  <span><i style="color:#bd9662" [ngClass]="nodeIcon"></i>
+  <span (click)="onClick()"><i [ngClass]="nodeIcon"></i>
   {{node.displayName}}</span><span>{{node.indentLevel}}</span>
 </span>`,
 
@@ -18,21 +18,33 @@ import { ExpandCollapseEvent } from "./ExpandCollapseEvent";
 })
 export class TreeNodeWidgetComponent implements OnInit {
   @Input() node:TreeNodeWidget;
+  @Input()
+  set isSelected(value:boolean){
+    this.node.isSelected=value;
+  }
 
   @Output() onExpanded:EventEmitter<any>;
+  @Output() onSelect:EventEmitter<any>;
 
   private _isExpanded:boolean = false;
+  private _isSelected:boolean = false;
 
   constructor() {
     this.onExpanded = new EventEmitter();
+    this.onSelect= new EventEmitter();
   }
 
   ngOnInit() {
   }
 
+  onClick(){
+    this.onSelect.emit(null);
+    this.isSelected=true;
+  }
+
   toggleExpand() {
     this._isExpanded = !this._isExpanded;
-    let event:ExpandCollapseEvent = new ExpandCollapseEvent(this._isExpanded, this.node.indentLevel);
+    let event:ExpandCollapseEvent = new ExpandCollapseEvent(this._isExpanded, this.node);
 
     this.onExpanded.emit(event);
   }
@@ -55,11 +67,11 @@ export class TreeNodeWidgetComponent implements OnInit {
   }
 
   get nodeIcon():string {
-    //   if (this.node.fileType==FileType.DIR){
-    //
-    //     return 'fa fa-fw fa-folder-o';
-    //   }
-    //
+    if (this.node.file.fileType == FileType.DIR) {
+
+      return 'fa fa-fw fa-folder-o directory-icon';
+    }
+
     return 'fa fa-fw fa-file-o';
   }
 }

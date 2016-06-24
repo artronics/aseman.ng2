@@ -1,2 +1,13 @@
 @import "dark/variables";
 
+.asm{
+
+  .directory-icon{
+    color:$directory-icon-color;
+  }
+
+}
+
+.tree-item-selected{
+  background-color: $tree-item-selected-background;
+}

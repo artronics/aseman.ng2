@@ -1,1 +1,1 @@
-export * from './models/AsemanFoo';
+export * from './models/File';
