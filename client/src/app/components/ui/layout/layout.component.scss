@@ -68,10 +68,12 @@ $selected-tab-background-color:$base-border-color;
 }
 
 .asm_nav {
-  width: 500px;
-  //min-width:500px;
   @extend %flexbox;
   @include flex-direction(column);
+
+  width: 500px;
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 .asm_editor {
@@ -169,6 +171,9 @@ $selected-tab-background-color:$base-border-color;
 
 .asm_tab-content{
   //margin-left: .5em;
+  ul{
+
+  }
 }
 .asm_tab-h-separator{
   height:3px;
