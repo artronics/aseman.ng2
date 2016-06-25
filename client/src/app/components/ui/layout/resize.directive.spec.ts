@@ -1,6 +1,7 @@
-import { beforeEachProviders, beforeEach, describe, expect, it, inject } from "@angular/core/testing";
+///<reference path="../../../services/file/file.service.ts"/>
+import { beforeEach, describe, expect, it, inject } from "@angular/core/testing";
 import { ComponentFixture, TestComponentBuilder } from "@angular/compiler/testing";
-import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { Resize } from "./resize.directive";
 import { ResizeEvent } from "../../../services/ui/events/ResizeEvent";
 import { Axis } from "../../../shared/coordinate/Axis";
@@ -29,8 +30,6 @@ describe('Resize Directive', () => {
 
   let resizeEvent:ResizeEvent;
 
-  beforeEachProviders(():any[] => []);
-
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
@@ -55,15 +54,25 @@ describe('Resize Directive', () => {
 
   describe('Resize Directive: Internals',()=>{
     // let resizeEvent:ResizeEvent;
-    // beforeEach(()=>{
-    //   fixture.detectChanges();
-    //   cm.resizeTest.subscribe((e:ResizeEvent)=> {
-    //     resizeEvent=e
-    //   });
-    //   el.dispatchEvent(new Event('mousedown'));
-    //   fixture.detectChanges();
-    // });
+    let eventP:Promise<ResizeEvent>;
+    beforeEach(()=>{
+      eventP= new Promise<ResizeEvent>(function (resolve,reject) {
+        fixture.detectChanges();
+        let event:ResizeEvent;
+        cm.resizeTest.subscribe((e:ResizeEvent)=> {
+          event=e
+        });
+        el.dispatchEvent(new Event('mousedown'));
+        fixture.detectChanges();
+        if (event!=null){
+          resolve(event);
+        }
+        else {
+          reject(Error('event is null'));
+        }
+      });
 
+    });
     let cb=function ():Promise<ResizeEvent> {
       fixture.detectChanges();
       let event:ResizeEvent;
@@ -77,14 +86,14 @@ describe('Resize Directive', () => {
         reject(()=>{
           throw 'kir';
         });
-      })
+      });
       return p;
-    }
+    };
 
     it('should set axis to X based on different Vertical string representations',()=>{
       cm.axis='H';
-      cb().then((e)=>{
-        // expect(e.direction).toBe(Axis.X);
+      eventP.then((e)=>{
+        expect(e.direction).toBe(Axis.X);
       })
 
 

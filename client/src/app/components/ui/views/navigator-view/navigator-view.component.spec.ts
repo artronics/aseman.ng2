@@ -1,13 +1,16 @@
 import { beforeEach, beforeEachProviders, describe, expect, it, inject } from "@angular/core/testing";
 import { ComponentFixture, TestComponentBuilder } from "@angular/compiler/testing";
-import { Component } from "@angular/core";
+import { Component, provide } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { NavigatorViewComponent } from "./navigator-view.component";
+import { FileService } from "../../../../services/file/file.service";
 
 describe('Component: NavigatorView', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [NavigatorViewComponent]);
+  beforeEachProviders(() => [NavigatorViewComponent,
+    provide(FileService,{useClass:FileService})]);
+
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
