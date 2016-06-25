@@ -15,8 +15,7 @@ import { File } from "../../../../shared/models/File";
 })
 export class NavigatorViewComponent implements OnInit {
   private _treeNodes:TreeNodeWidget[] = [];
-  private _selectedIndex:number;
-  private _selectedList:number[];
+  private _selectedList:TreeNodeWidget[]=[];
   private _isMultipleSelectionOn:boolean = false;
   //TODO should be provided by project service
   private _projectRoot:string = '/an/absolute/path/to/project-name';
@@ -56,6 +55,9 @@ export class NavigatorViewComponent implements OnInit {
       }
 
       this._treeNodes.splice(++inx, counter);
+      
+      //TODO clear isSelected if it is in collapsed list
+      // console.log(this._selectedList[0]);
     }
   }
 
@@ -64,8 +66,10 @@ export class NavigatorViewComponent implements OnInit {
 
     }
     else {
-      this._selectedIndex = inx;
+      this._selectedList[0]=this._treeNodes[inx];
+      this._treeNodes[inx].isSelected=true;
     }
+    console.log(this._selectedList[0]);
   }
 
   isSelected(inx) {
@@ -73,11 +77,8 @@ export class NavigatorViewComponent implements OnInit {
 
     }
     else {
-      this._selectedIndex = inx;
+      return (this._selectedList[0] === this._treeNodes[inx])
     }
-    // if (this._treeNodes[inx].isSelected){
-    //   return true;
-    // }
 
     return false;
   }

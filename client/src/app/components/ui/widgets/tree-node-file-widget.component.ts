@@ -9,8 +9,8 @@ import { FileType } from "../../../shared/models/File";
 
   template: `
 <span class="asm_widget asm" [ngStyle]="{'padding-left':padding}">
-  <i (click)="toggleExpand()" [ngClass]="expandableIcon"></i>
-  <span (click)="onClick()"><i [ngClass]="nodeIcon"></i>
+  <i (click)="toggleExpand($event)" [ngClass]="expandableIcon"></i>
+  <span><i [ngClass]="nodeIcon"></i>
   {{node.displayName}}</span><span>{{node.indentLevel}}</span>
 </span>`,
 
@@ -24,25 +24,19 @@ export class TreeNodeWidgetComponent implements OnInit {
   }
 
   @Output() onExpanded:EventEmitter<any>;
-  @Output() onSelect:EventEmitter<any>;
 
   private _isExpanded:boolean = false;
   private _isSelected:boolean = false;
 
   constructor() {
     this.onExpanded = new EventEmitter();
-    this.onSelect= new EventEmitter();
   }
 
   ngOnInit() {
   }
 
-  onClick(){
-    this.onSelect.emit(null);
-    this.isSelected=true;
-  }
-
-  toggleExpand() {
+  toggleExpand($event) {
+    $event.stopPropagation();
     this._isExpanded = !this._isExpanded;
     let event:ExpandCollapseEvent = new ExpandCollapseEvent(this._isExpanded, this.node);
 
