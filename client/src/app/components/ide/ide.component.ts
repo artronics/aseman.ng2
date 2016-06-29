@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { LayoutComponent } from "../layout/layout.component";
 
 @Component({
   moduleId: module.id,
   selector: 'asm-ide',
-  templateUrl: 'ide.component.html',
-  styleUrls: ['ide.component.css']
+  template: `
+<asm-layout></asm-layout>
+  `,
+  styleUrls: ['ide.component.css'],
+  directives:[LayoutComponent]
 })
 export class IdeComponent implements OnInit {
 
