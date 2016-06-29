@@ -56,6 +56,7 @@ export class Resize {
     this._resizeEvent.htmlElement = this.targetEle;
 
     this.resize.emit(this._resizeEvent);
+    console.log(this._resizeEvent);
   }
 
 }

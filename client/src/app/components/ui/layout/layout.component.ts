@@ -56,6 +56,8 @@ export class LayoutComponent implements OnInit,OnDestroy {
         this._mousemovePrevPos,
         this._mousemoveCurPos);
 
+      console.log(`x=${this._mousemoveCurPos.x}`)
+      console.log(`x2=${this._mousemovePrevPos.x}`)
       this._mousemovePrevPos.x = this._mousemoveCurPos.x;
       this._mousemovePrevPos.y = this._mousemoveCurPos.y;
     }
@@ -66,6 +68,7 @@ export class LayoutComponent implements OnInit,OnDestroy {
     this._resizeEvent = $event;
     //Initialize mousemove cursor position with this position
     this._mousemovePrevPos = $event.mouseInitialCor.screenCor;
+    console.log('client width: '+this._resizeEvent.htmlElement.clientWidth);
   }
 
   private resize(el:HTMLElement, axis:Axis, oldP:Point, newP:Point) {
@@ -77,6 +80,7 @@ export class LayoutComponent implements OnInit,OnDestroy {
       case Axis.X:
         el.style.width = String(newWidth) + 'px';
         el.style.minWidth = String(newWidth) + 'px';
+        console.log(`w: ${newWidth}`);
         break;
       case Axis.Y:
         el.style.height = String(newHeight) + 'px';
