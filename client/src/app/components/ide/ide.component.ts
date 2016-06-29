@@ -7,7 +7,6 @@ import { LayoutComponent } from "../layout/layout.component";
   template: `
 <asm-layout></asm-layout>
   `,
-  styleUrls: ['ide.component.css'],
   directives:[LayoutComponent]
 })
 export class IdeComponent implements OnInit {
