@@ -1,9 +1,0 @@
-<ul class="asm_menubar flex-container" [ngClass]="{asm_menuHover:isActive}">
-  <li *ngFor="let title of titles; let idx=index" class="kir"
-      (click)="onClick(idx,$event)" (mouseenter)="onMouseenter(idx)"
-  >{{title}}
-    <div *ngIf="idx==selectedTitle" class="asm_menubarList">
-      <asm-menu-container></asm-menu-container>
-    </div>
-  </li>
-</ul>
