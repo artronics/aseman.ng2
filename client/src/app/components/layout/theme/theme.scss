@@ -3,3 +3,13 @@
 .asm_menubar{
   background-color: $menubar-background-color;
 }
+
+.asm_theme{
+
+  .hover{
+    &:hover{
+      background-color: $hover-background-color;
+    }
+  }
+
+}
