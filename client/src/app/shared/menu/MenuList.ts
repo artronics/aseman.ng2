@@ -1,19 +1,21 @@
-import { MenuItem } from "./BaseMenuItem";
 
+import { BaseMenuItem } from "./BaseMenuItem";
 export class MenuList{
-  private _menuItems:MenuItem[]=[];
+  private _menuItems:BaseMenuItem[]=[];
 
   constructor(private _name:string,
               private _title?:string,
-              menuItems?:MenuItem[]) {
-    this._menuItems = menuItems;
+              menuItems?:BaseMenuItem[]) {
+    if (menuItems){
+      this._menuItems = menuItems;
+    }
   }
 
-  addMenuItem(item:MenuItem){
+  addMenuItem(item:BaseMenuItem){
     this._menuItems.push(item);
   }
 
-  get menuItems():MenuItem[] {
+  get menuItems():BaseMenuItem[] {
     return this._menuItems;
   }
 }

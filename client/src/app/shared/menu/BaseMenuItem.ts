@@ -5,5 +5,5 @@ export abstract class BaseMenuItem{
   constructor(
     protected _name:string
   ) {}
-  
+
 }
