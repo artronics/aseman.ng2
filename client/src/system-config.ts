@@ -40,6 +40,7 @@ const barrels: string[] = [
   'app/components/ui/theme',
   'app/components/ui/navigator-view',
   'app/components/ide',
+  'app/components/ui/widgets/menu-item-widget',
   /** @cli-barrel */
 ];
 
