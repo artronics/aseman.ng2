@@ -18,4 +18,8 @@ export class MenuList{
   get menuItems():BaseMenuItem[] {
     return this._menuItems;
   }
+
+  get title():string {
+    return this._title;
+  }
 }

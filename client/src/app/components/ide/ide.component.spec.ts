@@ -11,10 +11,11 @@ import {
 } from '@angular/core/testing';
 
 import { IdeComponent } from './ide.component';
+import { MenubarService } from "../../services/menu/menubar.service";
 
 describe('Component: Ide', () => {
   it('should create an instance', () => {
-    let component = new IdeComponent();
+    let component = new IdeComponent(new MenubarService());
     expect(component).toBeTruthy();
   });
 });

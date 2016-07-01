@@ -7,6 +7,14 @@ export class MenubarService {
 
   constructor() {}
 
+  getTitles():string[]{
+    let titles:string[]=[];
+    for(let list of this._menuLists){
+      titles.push(list.title);
+    }
+    
+    return titles;
+  }
 
   get menuLists():MenuList[] {
     return this._menuLists;
