@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutComponent } from "../layout/layout.component";
+import { MenubarService } from "../../services/menu/menubar.service";
+import { MenubarItemFactory } from "./MenubarItemFactory";
 
 @Component({
   moduleId: module.id,
@@ -7,13 +9,18 @@ import { LayoutComponent } from "../layout/layout.component";
   template: `
 <asm-layout></asm-layout>
   `,
-  directives:[LayoutComponent]
+  directives:[LayoutComponent],
+  providers:[MenubarService]
 })
 export class IdeComponent implements OnInit {
 
-  constructor() {}
+  constructor(private _menubarService:MenubarService) {
+  }
 
   ngOnInit() {
+    let menubarFactory:MenubarItemFactory=new MenubarItemFactory();
+    menubarFactory.createMenubar();
+    this._menubarService.menuLists=menubarFactory.menubarMenuLists;
   }
 
 }
