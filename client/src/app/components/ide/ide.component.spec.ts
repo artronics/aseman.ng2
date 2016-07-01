@@ -15,7 +15,7 @@ import { MenubarService } from "../../services/menu/menubar.service";
 
 describe('Component: Ide', () => {
   it('should create an instance', () => {
-    let component = new IdeComponent(new MenubarService());
+    let component = new IdeComponent();
     expect(component).toBeTruthy();
   });
 });

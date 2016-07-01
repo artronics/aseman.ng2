@@ -10,17 +10,13 @@ import { MenubarItemFactory } from "./MenubarItemFactory";
 <asm-layout></asm-layout>
   `,
   directives:[LayoutComponent],
-  providers:[MenubarService]
 })
 export class IdeComponent implements OnInit {
 
-  constructor(private _menubarService:MenubarService) {
+  constructor() {
   }
 
   ngOnInit() {
-    let menubarFactory:MenubarItemFactory=new MenubarItemFactory();
-    menubarFactory.createMenubar();
-    this._menubarService.menuLists=menubarFactory.menubarMenuLists;
   }
 
 }

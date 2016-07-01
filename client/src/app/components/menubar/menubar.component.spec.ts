@@ -14,6 +14,7 @@ import { MenubarComponent } from './menubar.component';
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenuList } from "../../shared/menu/MenuList";
 import { ActionMenuItem } from "../../shared/menu/ActionMenuItem";
+import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 
 describe('Component: Menubar', () => {
   let component:MenubarComponent;
@@ -36,6 +37,13 @@ describe('Component: Menubar', () => {
 
 class MenubarServiceMock extends MenubarService{
   constructor(){
+    super(new MenubarItemFactoryMock());
+  }
+}
+class MenubarItemFactoryMock extends MenubarItemFactory{
+  private lists:MenuList[]=[];
+
+  constructor(){
     super();
     let foo:MenuList=new MenuList('foo','Foo');
     foo.addMenuItem(new ActionMenuItem('new','New'));
@@ -44,10 +52,11 @@ class MenubarServiceMock extends MenubarService{
     bar.addMenuItem(new ActionMenuItem('find','Find'));
     bar.addMenuItem(new ActionMenuItem('copy','Copy'));
 
-    let lists:MenuList[]=[];
-    lists.push(foo);lists.push(bar);
-
-    this.menuLists=lists;
+    this.lists.push(foo);
+    this.lists.push(bar);
   }
 
+  get menubarMenuLists():MenuList[] {
+    return this.lists;
+  }
 }
