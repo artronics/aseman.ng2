@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MenubarService } from "../../services/menu/menubar.service";
 
 @Component({
   moduleId: module.id,
   selector: 'asm-menubar',
   templateUrl: 'menubar.component.html',
-  styleUrls: ['menubar.component.css']
+  styleUrls: ['menubar.component.css'],
+  providers:[MenubarService]
 })
 export class MenubarComponent implements OnInit {
+  public menubarTitles:string[]=[];
 
-  constructor() {}
+  constructor(private _menubarService:MenubarService) {}
 
   ngOnInit() {
+    this.menubarTitles=this._menubarService.getTitles();
   }
 
 }
