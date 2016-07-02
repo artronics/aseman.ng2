@@ -22,6 +22,15 @@ export class MenubarService {
     return titles;
   }
 
+  getMenuListByTitle(title:string):MenuList{
+    for(let list of this._menuLists){
+      if (list.title===title){
+        return list;
+      }
+    }
+    return null;
+  }
+
   get menuLists():MenuList[] {
     return this._menuLists;
   }

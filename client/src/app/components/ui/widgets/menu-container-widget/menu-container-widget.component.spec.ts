@@ -41,7 +41,6 @@ describe('Component: MenuContainerWidget', () => {
   it('should populate li elements based on menuItems',()=>{
     fixture.detectChanges();
     let lis=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
-    console.log(lis);
     expect(lis.length).toBe(2);
     
   });

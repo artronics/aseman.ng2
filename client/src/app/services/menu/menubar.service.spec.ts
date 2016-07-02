@@ -25,6 +25,12 @@ describe('Menubar Service', () => {
     expect(menubarService.getTitles()).toEqual(expTitles);
   });
 
+  it('should get menuList by title. getMenuListByTitle()',()=>{
+    let menuListByTitle = menubarService.getMenuListByTitle('Foo');
+    console.log(menuListByTitle);
+    expect(menuListByTitle.title).toBe('Foo');
+  });
+
 });
 class MenubarItemFactoryMock extends MenubarItemFactory{
   private lists:MenuList[]=[];
