@@ -69,7 +69,7 @@ describe('Component: Menubar', () => {
 
   it('should populate li elements inside titles', ()=> {
     fixture.detectChanges();
-    let lis:NodeList = fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    let lis:NodeList = fixture.nativeElement.querySelectorAll('asm-menubar>ul>li>span');
     expect(lis.length).toBe(2);
     expect(lis[0].textContent).toBe('Foo');
     expect(lis[1].textContent).toBe('Bar');
@@ -139,6 +139,18 @@ describe('Component: Menubar', () => {
     li[0].click();
     li[1].dispatchEvent(new Event('mouseenter'));
     expect(ele.selectedItemIndex).toBe(1);
+  });
+
+  it('should add a div to li content if it is selected',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    let div:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li>div');
+    expect(div.length).toBe(0);
+
+    li[0].click();
+    fixture.detectChanges();
+    div=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li>div');
+    expect(div.length).toBe(1);
   });
 
 });
