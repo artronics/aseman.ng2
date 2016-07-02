@@ -187,14 +187,3 @@ class MenubarItemFactoryMock extends MenubarItemFactory {
     return this.lists;
   }
 }
-/*
-
- it('should create the component', inject([], () => {
- return builder.createAsync(MenubarComponentTestController)
- .then((fixture: ComponentFixture<any>) => {
- let query = fixture.debugElement.query(By.directive(MenubarComponent));
- expect(query).toBeTruthy();
- expect(query.componentInstance).toBeTruthy();
- });
- }));
- * */
