@@ -15,6 +15,8 @@ export class MenubarComponent implements OnInit {
 
   private _menubarService:MenubarService;
 
+  private _selectedItemIndex:number=-1;
+
   constructor(@Inject(MenubarService) menubarService:MenubarService) {
     this._menubarService=menubarService;
   }
@@ -23,8 +25,17 @@ export class MenubarComponent implements OnInit {
     this.menubarTitles=this._menubarService.getTitles();
   }
 
-  onClick(){
+  onClick(inx:number){
     this.isActive=!this.isActive;
+    if (this.isActive){
+      this._selectedItemIndex=inx;
+    }
+    else {
+      this._selectedItemIndex=-1;
+    }
   }
 
+  get selectedItemIndex():number {
+    return this._selectedItemIndex;
+  }
 }

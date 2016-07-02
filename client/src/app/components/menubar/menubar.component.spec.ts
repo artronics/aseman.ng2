@@ -51,6 +51,9 @@ describe('Component: Menubar', () => {
   it('should set isActive to false as default',()=>{
     expect(component.isActive).toBe(false);
   });
+  it('should set selectedItemIndex to -1 as default',()=>{
+    expect(component.selectedItemIndex).toBe(-1);
+  });
 
   it('should get titles from menubar service during ngOnInit', ()=> {
     expect(component.menubarTitles.length).toBe(0);
@@ -79,6 +82,20 @@ describe('Component: Menubar', () => {
     li.click();
     expect(ele.isActive).toBe(true);
   });
+
+  it('should set selectedItemIndex to li index on click event (test index 0)',()=>{
+    fixture.detectChanges();
+    let li=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    li[0].click();
+    expect(ele.selectedItemIndex).toBe(0);
+  });
+  it('should set selectedItemIndex to li index on click event(test index 1)',()=>{
+    fixture.detectChanges();
+    let li=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    li[1].click();
+    expect(ele.selectedItemIndex).toBe(1);
+  });
+
   it('should toggle isActive upon each click',()=>{
     fixture.detectChanges();
     let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
@@ -86,6 +103,14 @@ describe('Component: Menubar', () => {
     li.click();
     li.click();
     expect(ele.isActive).toBe(false);
+  });
+
+  it('should set selectedItemIndex back to -1 when isActive is false',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
+    li.click();
+    li.click();
+    expect(ele.selectedItemIndex).toBe(-1);
   });
 
 });
