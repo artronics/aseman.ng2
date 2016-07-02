@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 
@@ -11,8 +11,11 @@ import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 })
 export class MenubarComponent implements OnInit {
   public menubarTitles:string[]=[];
+  private _menubarService:MenubarService;
 
-  constructor(private _menubarService:MenubarService) {}
+  constructor(@Inject(MenubarService) menubarService:MenubarService) {
+    this._menubarService=menubarService;
+  }
 
   ngOnInit() {
     this.menubarTitles=this._menubarService.getTitles();

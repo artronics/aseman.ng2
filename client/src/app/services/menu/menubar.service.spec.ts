@@ -11,7 +11,7 @@ describe('Menubar Service', () => {
 
   beforeEach(()=>{
     addProviders([MenubarService,MenubarItemFactory]);
-    
+
     menubarService=new MenubarService(new MenubarItemFactoryMock);
   });
 

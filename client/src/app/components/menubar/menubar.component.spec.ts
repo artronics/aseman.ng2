@@ -1,16 +1,18 @@
 /* tslint:disable:no-unused-variable */
 
 import { By } from "@angular/platform-browser";
-import { Component, provide } from "@angular/core";
+import { Component, provide, Injectable } from "@angular/core";
 import {
   beforeEach,
+  addProviders,
+  beforeEachProviders,
   describe,
   expect,
   it,
   async,
   inject,
   TestComponentBuilder,
-  ComponentFixture
+  ComponentFixture,
 } from "@angular/core/testing";
 import { MenubarComponent } from "./menubar.component";
 import { MenubarService } from "../../services/menu/menubar.service";
@@ -24,25 +26,19 @@ describe('Component: Menubar', () => {
   let component:MenubarComponent;
   let menubarService:MenubarService;
   beforeEach(()=> {
-    // addProviders([MenubarComponent]);
-
+    // addProviders([MenubarComponent,MenubarService,MenubarItemFactory,MenubarServiceMock]);
     menubarService = new MenubarServiceMock();
     component = new MenubarComponent(menubarService);
+
   });
-  // beforeEachProviders(()=>[
-  //     // MenubarComponent,
-  //     provide(MenubarService, {useClass: MenubarServiceMock}),
-  //     provide(MenubarItemFactory, {useClass: MenubarItemFactoryMock}),
-  //   ]
-  // );
 
   beforeEach(async(inject([TestComponentBuilder], (tcb)=> {
     builder = tcb;
   })));
   beforeEach(async(inject([], ()=> {
     return builder
-      // .overrideProviders(MenubarComponent,[provide(MenubarService,{useClass:MenubarServiceMock})])
-      .overrideProviders(MenubarComponent,[provide(MenubarService,{useClass:MenubarServiceMock})])
+      .overrideProviders(MenubarComponent,[provide(MenubarService,{useValue:menubarService})])
+      // .overrideProviders(MenubarComponent,[menubarService])
       .createAsync(MenubarTestComponent)
       .then((_fixture:ComponentFixture<any>)=> {
         fixture = _fixture;
@@ -67,9 +63,10 @@ describe('Component: Menubar', () => {
 
   it('should populate li elements inside titles', ()=> {
     fixture.detectChanges();
-    let lis:HTMLElement[] = fixture.nativeElement.querySelectorAll('asm-menubar>ul');
-    console.log(lis);
-    expect(lis.length).toBe(3);
+    let lis:NodeList = fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    expect(lis.length).toBe(2);
+    expect(lis[0].textContent).toBe('Foo');
+    expect(lis[1].textContent).toBe('Bar');
   })
 
 });
