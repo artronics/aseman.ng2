@@ -1,3 +1,6 @@
+ul{
+  position: absolute;
+}
 ul>li{
   display: block;
 }
