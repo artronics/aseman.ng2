@@ -32,6 +32,12 @@ describe('Component: Menubar', () => {
   beforeEach(async(inject([TestComponentBuilder], (tcb)=> {
     builder = tcb;
   })));
+  beforeEach(async(inject([], ()=> {
+    return builder.createAsync(MenubarTestComponent)
+      .then((_fixture:ComponentFixture<any>)=> {
+        fixture = _fixture;
+      })
+  })));
 
   it('should create an instance', () => {
     expect(component).toBeTruthy();
@@ -42,15 +48,12 @@ describe('Component: Menubar', () => {
     component.ngOnInit();
     expect(component.menubarTitles.length).toBe(2);
   });
-  it('should inject',()=>{
-    console.log(builder);
-    builder.createAsync(MenubarTestComponent)
-      .then((fixture:ComponentFixture<any>)=>{
-        let query = fixture.debugElement.query(By.directive(MenubarComponent));
-        expect(query).toBeTruthy();
-        expect(query.componentInstance).toBeTruthy();
-        expect(1).toBe(3);
-      })
+  it('should inject', ()=> {
+    console.log(fixture);
+    // expect(1).toBe(3);
+    let query = fixture.debugElement.query(By.directive(MenubarComponent));
+    expect(query).toBeTruthy();
+    expect(query.componentInstance).toBeTruthy();
   });
 });
 @Component({
