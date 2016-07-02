@@ -136,8 +136,10 @@ describe('Component: Menubar', () => {
     let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
 
     // make it active
-    li[0].click();
+    li[0].dispatchEvent(new Event('click'));
+    fixture.detectChanges();
     li[1].dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
     expect(ele.selectedItemIndex).toBe(1);
   });
 

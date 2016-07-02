@@ -14,6 +14,8 @@ export class MenuContainerWidgetComponent implements OnInit {
   private _menuList:MenuList;
   private _menuItems:BaseMenuItem[]=[];
 
+  private _selectedItemIndex:number=-1;
+
   @Input()
   set menuList(list:MenuList) {
     this._menuList = list;
@@ -25,7 +27,25 @@ export class MenuContainerWidgetComponent implements OnInit {
     this._menuItems=this._menuList.menuItems;
   }
 
+  onClick(inx:number){
+  }
+
+  onMouseenter(inx:number){
+    this._selectedItemIndex=inx;
+  }
+  onMouseleave(){
+    this._selectedItemIndex=-1;
+  }
+
+  isSelected(inx:number):boolean{
+    return (this._selectedItemIndex===inx);
+  }
+
   get menuItems():BaseMenuItem[] {
     return this._menuItems;
+  }
+
+  get selectedItemIndex():number {
+    return this._selectedItemIndex;
   }
 }

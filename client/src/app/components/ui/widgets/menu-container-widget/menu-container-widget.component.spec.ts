@@ -39,13 +39,45 @@ describe('Component: MenuContainerWidget', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should set selectedItemIndex to -1 as default',()=>{
+    expect(el.selectedItemIndex).toBe(-1);
+  });
+
   it('should populate li elements based on menuItems',()=>{
     fixture.detectChanges();
     let lis=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
     expect(lis.length).toBe(2);
-
   });
 
+  it('should change selectedItemIndex to index onMouseenter',()=>{
+    fixture.detectChanges();
+    let li=fixture.nativeElement.querySelector('asm-menu-container-widget>ul>li');
+    li.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+
+    expect(el.selectedItemIndex).toBe(0);
+  });
+
+  it('should change selectedItemIndex back to -1 onMouseleave',()=>{
+    fixture.detectChanges();
+    let li=fixture.nativeElement.querySelector('asm-menu-container-widget>ul>li');
+    li.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    li.dispatchEvent(new Event('mouseleave'));
+    fixture.detectChanges();
+
+    expect(el.selectedItemIndex).toBe(-1);
+  });
+
+  it('should add "selected" class to selected li element',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
+
+    expect(li[0].classList).not.toContain('selected');
+    li[0].dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    expect(li[0].classList).toContain('selected');
+  });
 });
 
 @Component({

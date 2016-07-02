@@ -1,5 +1,10 @@
 <ul class="asm_menu">
-  <li *ngFor="let item of menuItems; let inx=index">
+  <li *ngFor="let item of menuItems; let inx=index"
+      (click)="onClick(inx)"
+      (mouseenter)="onMouseenter(inx)"
+      (mouseleave)="onMouseleave()"
+      [class.selected]="isSelected(inx)"
+  >
     <asm-menu-item-widget></asm-menu-item-widget>
   </li>
 </ul>
