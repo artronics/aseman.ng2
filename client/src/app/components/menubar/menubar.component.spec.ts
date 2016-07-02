@@ -1,10 +1,9 @@
 /* tslint:disable:no-unused-variable */
 
 import { By } from "@angular/platform-browser";
-import { Component } from "@angular/core";
+import { Component, provide } from "@angular/core";
 import {
   beforeEach,
-  addProviders,
   describe,
   expect,
   it,
@@ -25,15 +24,26 @@ describe('Component: Menubar', () => {
   let component:MenubarComponent;
   let menubarService:MenubarService;
   beforeEach(()=> {
-    addProviders([MenubarComponent]);
+    // addProviders([MenubarComponent]);
+
     menubarService = new MenubarServiceMock();
     component = new MenubarComponent(menubarService);
   });
+  // beforeEachProviders(()=>[
+  //     // MenubarComponent,
+  //     provide(MenubarService, {useClass: MenubarServiceMock}),
+  //     provide(MenubarItemFactory, {useClass: MenubarItemFactoryMock}),
+  //   ]
+  // );
+
   beforeEach(async(inject([TestComponentBuilder], (tcb)=> {
     builder = tcb;
   })));
   beforeEach(async(inject([], ()=> {
-    return builder.createAsync(MenubarTestComponent)
+    return builder
+      // .overrideProviders(MenubarComponent,[provide(MenubarService,{useClass:MenubarServiceMock})])
+      .overrideProviders(MenubarComponent,[provide(MenubarService,{useClass:MenubarServiceMock})])
+      .createAsync(MenubarTestComponent)
       .then((_fixture:ComponentFixture<any>)=> {
         fixture = _fixture;
       })
@@ -48,13 +58,20 @@ describe('Component: Menubar', () => {
     component.ngOnInit();
     expect(component.menubarTitles.length).toBe(2);
   });
-  it('should inject', ()=> {
-    console.log(fixture);
-    // expect(1).toBe(3);
+
+  it('should create the component', ()=> {
     let query = fixture.debugElement.query(By.directive(MenubarComponent));
     expect(query).toBeTruthy();
     expect(query.componentInstance).toBeTruthy();
   });
+
+  it('should populate li elements inside titles', ()=> {
+    fixture.detectChanges();
+    let lis:HTMLElement[] = fixture.nativeElement.querySelectorAll('asm-menubar>ul');
+    console.log(lis);
+    expect(lis.length).toBe(3);
+  })
+
 });
 @Component({
   selector: 'test',
