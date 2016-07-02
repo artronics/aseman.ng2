@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from "@angular/core";
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 
@@ -11,6 +11,8 @@ import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 })
 export class MenubarComponent implements OnInit {
   public menubarTitles:string[]=[];
+  public isActive:boolean=false;
+
   private _menubarService:MenubarService;
 
   constructor(@Inject(MenubarService) menubarService:MenubarService) {
@@ -19,6 +21,10 @@ export class MenubarComponent implements OnInit {
 
   ngOnInit() {
     this.menubarTitles=this._menubarService.getTitles();
+  }
+
+  onClick(){
+    this.isActive=!this.isActive;
   }
 
 }

@@ -1,18 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { By } from "@angular/platform-browser";
-import { Component, provide, Injectable } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   beforeEach,
-  addProviders,
-  beforeEachProviders,
   describe,
   expect,
   it,
   async,
   inject,
   TestComponentBuilder,
-  ComponentFixture,
+  ComponentFixture
 } from "@angular/core/testing";
 import { MenubarComponent } from "./menubar.component";
 import { MenubarService } from "../../services/menu/menubar.service";
@@ -25,8 +23,9 @@ describe('Component: Menubar', () => {
   let fixture:ComponentFixture<any>;
   let component:MenubarComponent;
   let menubarService:MenubarService;
+  let ele;
   beforeEach(()=> {
-    // addProviders([MenubarComponent,MenubarService,MenubarItemFactory,MenubarServiceMock]);
+    // addProviders([MenubarComponent,{provide:MenubarService,useValue:menubarService}]);
     menubarService = new MenubarServiceMock();
     component = new MenubarComponent(menubarService);
 
@@ -37,16 +36,20 @@ describe('Component: Menubar', () => {
   })));
   beforeEach(async(inject([], ()=> {
     return builder
-      .overrideProviders(MenubarComponent,[provide(MenubarService,{useValue:menubarService})])
-      // .overrideProviders(MenubarComponent,[menubarService])
+      .overrideProviders(MenubarComponent,[{provide:MenubarService,useValue:menubarService}])
       .createAsync(MenubarTestComponent)
       .then((_fixture:ComponentFixture<any>)=> {
         fixture = _fixture;
+        ele = fixture.debugElement.query(By.directive(MenubarComponent)).componentInstance;
       })
   })));
 
   it('should create an instance', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set isActive to false as default',()=>{
+    expect(component.isActive).toBe(false);
   });
 
   it('should get titles from menubar service during ngOnInit', ()=> {
@@ -67,7 +70,23 @@ describe('Component: Menubar', () => {
     expect(lis.length).toBe(2);
     expect(lis[0].textContent).toBe('Foo');
     expect(lis[1].textContent).toBe('Bar');
-  })
+  });
+
+  it('should set isActive to true on click event on titles',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
+    expect(ele.isActive).toBe(false);
+    li.click();
+    expect(ele.isActive).toBe(true);
+  });
+  it('should toggle isActive upon each click',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
+    expect(ele.isActive).toBe(false);
+    li.click();
+    li.click();
+    expect(ele.isActive).toBe(false);
+  });
 
 });
 @Component({

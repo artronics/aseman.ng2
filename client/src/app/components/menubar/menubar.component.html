@@ -1,3 +1,5 @@
 <ul class="flex-row-container asm_menubar">
-  <li *ngFor="let title of menubarTitles">{{title}}</li>
+  <li *ngFor="let title of menubarTitles"
+      (click)="onClick()"
+  >{{title}}</li>
 </ul>
