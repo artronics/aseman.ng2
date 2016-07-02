@@ -95,6 +95,13 @@ describe('Component: Menubar', () => {
     li[1].click();
     expect(ele.selectedItemIndex).toBe(1);
   });
+  it('should return true if isSelected(inx) points to selected index',()=>{
+    fixture.detectChanges();
+    let li=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    li[1].click();
+    expect(ele.isSelected(1)).toBe(true);
+    expect(ele.isSelected(0)).toBe(false);
+  });
 
   it('should toggle isActive upon each click',()=>{
     fixture.detectChanges();
@@ -112,6 +119,17 @@ describe('Component: Menubar', () => {
     li.click();
     expect(ele.selectedItemIndex).toBe(-1);
   });
+
+
+  it('should add "selected" class to selected li element',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+    
+    expect(li[0].classList).not.toContain('selected');
+    li[0].click();
+    fixture.detectChanges();
+    expect(li[0].classList).toContain('selected');
+  })
 
 });
 @Component({

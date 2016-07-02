@@ -1,15 +1,13 @@
 @import "dark/dark";
 
-.asm_menubar{
+.asm_menubar {
   background-color: $menubar-background-color;
 }
 
-.asm_theme{
+.asm_theme {
 
-  .hover{
-    &:hover{
-      background-color: $hover-background-color;
-    }
+  .selected {
+    background-color: $hover-background-color;
   }
 
 }

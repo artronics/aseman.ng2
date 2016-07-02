@@ -1,13 +1,15 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
+import { NgClass } from "@angular/common";
 
 @Component({
   moduleId: module.id,
   selector: 'asm-menubar',
   templateUrl: 'menubar.component.html',
   styleUrls: ['menubar.component.css'],
-  providers:[MenubarService,MenubarItemFactory]
+  providers:[MenubarService,MenubarItemFactory],
+  directives:[NgClass]
 })
 export class MenubarComponent implements OnInit {
   public menubarTitles:string[]=[];
@@ -27,12 +29,12 @@ export class MenubarComponent implements OnInit {
 
   onClick(inx:number){
     this.isActive=!this.isActive;
-    if (this.isActive){
-      this._selectedItemIndex=inx;
-    }
-    else {
-      this._selectedItemIndex=-1;
-    }
+
+    this._selectedItemIndex= this.isActive ? inx:-1;
+  }
+
+  isSelected(inx:number):boolean{
+    return (this._selectedItemIndex===inx)
   }
 
   get selectedItemIndex():number {
