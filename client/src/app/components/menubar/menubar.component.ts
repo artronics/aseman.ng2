@@ -33,6 +33,12 @@ export class MenubarComponent implements OnInit {
     this._selectedItemIndex= this.isActive ? inx:-1;
   }
 
+  onMouseenter(inx:number){
+    if (this.isActive){
+      this._selectedItemIndex=inx;
+    }
+  }
+  
   isSelected(inx:number):boolean{
     return (this._selectedItemIndex===inx)
   }

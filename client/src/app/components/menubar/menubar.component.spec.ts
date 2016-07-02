@@ -124,12 +124,22 @@ describe('Component: Menubar', () => {
   it('should add "selected" class to selected li element',()=>{
     fixture.detectChanges();
     let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
-    
+
     expect(li[0].classList).not.toContain('selected');
     li[0].click();
     fixture.detectChanges();
     expect(li[0].classList).toContain('selected');
-  })
+  });
+
+  it('should change selectedItemIndex on mouseenter if isActive is true',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
+
+    // make it active
+    li[0].click();
+    li[1].dispatchEvent(new Event('mouseenter'));
+    expect(ele.selectedItemIndex).toBe(1);
+  });
 
 });
 @Component({

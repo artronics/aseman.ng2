@@ -1,6 +1,7 @@
 <ul class="flex-row-container asm_menubar">
   <li *ngFor="let title of menubarTitles; let inx=index"
       (click)="onClick(inx)"
+      (mouseenter)="onMouseenter(inx)"
       [class.selected]="isSelected(inx)"
   >{{title}}</li>
 </ul>
