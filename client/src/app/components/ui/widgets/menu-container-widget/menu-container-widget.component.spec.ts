@@ -15,6 +15,7 @@ import {
 import { MenuContainerWidgetComponent } from "./menu-container-widget.component";
 import { BaseMenuItem } from "../../../../shared/menu/BaseMenuItem";
 import { ActionMenuItem } from "../../../../shared/menu/ActionMenuItem";
+import { MenuList } from "../../../../shared/menu/MenuList";
 
 describe('Component: MenuContainerWidget', () => {
   let builder:TestComponentBuilder;
@@ -42,22 +43,24 @@ describe('Component: MenuContainerWidget', () => {
     fixture.detectChanges();
     let lis=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
     expect(lis.length).toBe(2);
-    
+
   });
 
 });
 
 @Component({
   selector:'test',
-  template:`<asm-menu-container-widget [menuItems]="items"></asm-menu-container-widget>`,
+  template:`<asm-menu-container-widget [menuList]="menuList"></asm-menu-container-widget>`,
   directives:[MenuContainerWidgetComponent],
 })
 class MenuContainerWidgetTestComponent{
-  items:BaseMenuItem[]=[];
+  menuList:MenuList;
   constructor(){
     /* populate some menu items*/
-    this.items.push(new ActionMenuItem('foo','Foo Action'));
-    this.items.push(new ActionMenuItem('bar','Bar Action'));
-    
+    let items:BaseMenuItem[]=[];
+    items.push(new ActionMenuItem('foo','Foo Action'));
+    items.push(new ActionMenuItem('bar','Bar Action'));
+
+    this.menuList=new MenuList('menuList','Menu List',items);
   }
 }

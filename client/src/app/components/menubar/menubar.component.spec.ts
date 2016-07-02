@@ -23,7 +23,7 @@ describe('Component: Menubar', () => {
   let fixture:ComponentFixture<any>;
   let component:MenubarComponent;
   let menubarService:MenubarService;
-  let ele;
+  let ele:MenubarComponent;
   beforeEach(()=> {
     // addProviders([MenubarComponent,{provide:MenubarService,useValue:menubarService}]);
     menubarService = new MenubarServiceMock();
@@ -151,6 +151,16 @@ describe('Component: Menubar', () => {
     fixture.detectChanges();
     div=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li>div');
     expect(div.length).toBe(1);
+  });
+
+  it('should get MenuList from menuService based on index',()=>{
+    fixture.detectChanges();
+    let menuList:MenuList=ele.getMenuList(0);
+    expect(menuList.title).toBe('Foo');
+  });
+
+  it('should get MenuList from menu service and feed it to MenuContainerWidgetComponent',()=>{
+
   });
 
 });

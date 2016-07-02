@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { MenuItemWidgetComponent } from "../menu-item-widget/menu-item-widget.component";
 import { BaseMenuItem } from "../../../../shared/menu/BaseMenuItem";
+import { MenuList } from "../../../../shared/menu/MenuList";
 
 @Component({
   moduleId: module.id,
@@ -10,16 +11,18 @@ import { BaseMenuItem } from "../../../../shared/menu/BaseMenuItem";
   directives:[MenuItemWidgetComponent]
 })
 export class MenuContainerWidgetComponent implements OnInit {
+  private _menuList:MenuList;
   private _menuItems:BaseMenuItem[]=[];
 
   @Input()
-  set menuItems(items:BaseMenuItem[]) {
-    this._menuItems = items;
+  set menuList(list:MenuList) {
+    this._menuList = list;
   }
 
   constructor() {}
 
   ngOnInit() {
+    this._menuItems=this._menuList.menuItems;
   }
 
   get menuItems():BaseMenuItem[] {

@@ -3,6 +3,9 @@
       (click)="onClick(inx)"
       (mouseenter)="onMouseenter(inx)"
       [class.selected]="isSelected(inx)"
-  ><span>{{title}}</span><div *ngIf="isSelected(inx)" style="position: absolute;">items</div>
+  ><span>{{title}}</span>
+    <div *ngIf="isSelected(inx)" style="position: absolute;">
+      <asm-menu-container-widget [menuList]="getMenuList(inx)"></asm-menu-container-widget>
+    </div>
   </li>
 </ul>
