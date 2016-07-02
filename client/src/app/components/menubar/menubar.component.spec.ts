@@ -1,56 +1,82 @@
 /* tslint:disable:no-unused-variable */
 
-import { By }           from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { By } from "@angular/platform-browser";
+import { Component } from "@angular/core";
 import {
-  beforeEach, beforeEachProviders,
-  describe, xdescribe,
-  expect, it, xit,
-  async, inject
-} from '@angular/core/testing';
-
-import { MenubarComponent } from './menubar.component';
+  beforeEach,
+  addProviders,
+  describe,
+  expect,
+  it,
+  async,
+  inject,
+  TestComponentBuilder,
+  ComponentFixture
+} from "@angular/core/testing";
+import { MenubarComponent } from "./menubar.component";
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenuList } from "../../shared/menu/MenuList";
 import { ActionMenuItem } from "../../shared/menu/ActionMenuItem";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 
 describe('Component: Menubar', () => {
+  let builder:TestComponentBuilder;
+  let fixture:ComponentFixture<any>;
   let component:MenubarComponent;
   let menubarService:MenubarService;
-  beforeEach(()=>{
-    menubarService=new MenubarServiceMock();
+  beforeEach(()=> {
+    addProviders([MenubarComponent]);
+    menubarService = new MenubarServiceMock();
     component = new MenubarComponent(menubarService);
   });
+  beforeEach(async(inject([TestComponentBuilder], (tcb)=> {
+    builder = tcb;
+  })));
 
   it('should create an instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get titles from menubar service during ngOnInit',()=>{
+  it('should get titles from menubar service during ngOnInit', ()=> {
     expect(component.menubarTitles.length).toBe(0);
     component.ngOnInit();
     expect(component.menubarTitles.length).toBe(2);
   });
+  it('should inject',()=>{
+    console.log(builder);
+    builder.createAsync(MenubarTestComponent)
+      .then((fixture:ComponentFixture<any>)=>{
+        let query = fixture.debugElement.query(By.directive(MenubarComponent));
+        expect(query).toBeTruthy();
+        expect(query.componentInstance).toBeTruthy();
+        expect(1).toBe(3);
+      })
+  });
 });
+@Component({
+  selector: 'test',
+  template: `<asm-menubar></asm-menubar>`,
+  directives: [MenubarComponent]
+})
+class MenubarTestComponent {
+}
 
-class MenubarServiceMock extends MenubarService{
-  constructor(){
+class MenubarServiceMock extends MenubarService {
+  constructor() {
     super(new MenubarItemFactoryMock());
   }
 }
-class MenubarItemFactoryMock extends MenubarItemFactory{
-  private lists:MenuList[]=[];
+class MenubarItemFactoryMock extends MenubarItemFactory {
+  private lists:MenuList[] = [];
 
-  constructor(){
+  constructor() {
     super();
-    let foo:MenuList=new MenuList('foo','Foo');
-    foo.addMenuItem(new ActionMenuItem('new','New'));
-    foo.addMenuItem(new ActionMenuItem('open','Open'));
-    let bar:MenuList=new MenuList('bar','Bar');
-    bar.addMenuItem(new ActionMenuItem('find','Find'));
-    bar.addMenuItem(new ActionMenuItem('copy','Copy'));
+    let foo:MenuList = new MenuList('foo', 'Foo');
+    foo.addMenuItem(new ActionMenuItem('new', 'New'));
+    foo.addMenuItem(new ActionMenuItem('open', 'Open'));
+    let bar:MenuList = new MenuList('bar', 'Bar');
+    bar.addMenuItem(new ActionMenuItem('find', 'Find'));
+    bar.addMenuItem(new ActionMenuItem('copy', 'Copy'));
 
     this.lists.push(foo);
     this.lists.push(bar);
@@ -60,3 +86,14 @@ class MenubarItemFactoryMock extends MenubarItemFactory{
     return this.lists;
   }
 }
+/*
+
+ it('should create the component', inject([], () => {
+ return builder.createAsync(MenubarComponentTestController)
+ .then((fixture: ComponentFixture<any>) => {
+ let query = fixture.debugElement.query(By.directive(MenubarComponent));
+ expect(query).toBeTruthy();
+ expect(query.componentInstance).toBeTruthy();
+ });
+ }));
+ * */
