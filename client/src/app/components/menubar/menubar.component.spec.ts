@@ -87,12 +87,14 @@ describe('Component: Menubar', () => {
     fixture.detectChanges();
     let li=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
     li[0].click();
+    fixture.detectChanges();
     expect(ele.selectedItemIndex).toBe(0);
   });
   it('should set selectedItemIndex to li index on click event(test index 1)',()=>{
     fixture.detectChanges();
     let li=fixture.nativeElement.querySelectorAll('asm-menubar>ul>li');
     li[1].click();
+    fixture.detectChanges();
     expect(ele.selectedItemIndex).toBe(1);
   });
   it('should return true if isSelected(inx) points to selected index',()=>{

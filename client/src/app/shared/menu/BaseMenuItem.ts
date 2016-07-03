@@ -1,5 +1,6 @@
 
 export abstract class BaseMenuItem{
+  protected _name:string;
   protected _displayName:string;
   protected _enable:boolean=true;
 
