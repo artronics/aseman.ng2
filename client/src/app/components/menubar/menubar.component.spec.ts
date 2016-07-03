@@ -170,17 +170,37 @@ describe('Component: Menubar', () => {
     expect(fixture.componentInstance.receivedClick).toBe(false);
   });
 
+  /* TODO fix this test*/
+  xit('should be active or deactive by parent component (layout)',()=>{
+    fixture.detectChanges();
+
+    let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
+    li.click();
+    fixture.detectChanges();
+    expect(ele.isActive).toBe(true);
+    expect(ele.selectedItemIndex).toBe(0);
+
+    let parent = fixture.nativeElement.querySelector('#parent');
+    parent.click();
+    fixture.detectChanges();
+    expect(ele.isActive).toBe(false);
+    expect(ele.selectedItemIndex).toBe(-1);
+  })
+
 });
 @Component({
   selector: 'test',
-  template: `<div (click)="onClick()"><asm-menubar></asm-menubar></div>`,
+  template: `<div id="parent" (click)="onClick()"><asm-menubar [layoutClick]="isActive"></asm-menubar></div>`,
   directives: [MenubarComponent]
 })
 class MenubarTestComponent {
   receivedClick=false;
+  public isActive=false;
   onClick(){
     this.receivedClick=true;
+    this.isActive!=this.isActive;
   }
+
 }
 
 class MenubarServiceMock extends MenubarService {

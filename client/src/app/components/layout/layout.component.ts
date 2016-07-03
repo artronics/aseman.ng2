@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MenubarComponent } from "../menubar/menubar.component";
 
 @Component({
@@ -10,10 +10,17 @@ import { MenubarComponent } from "../menubar/menubar.component";
   directives:[MenubarComponent]
 })
 export class LayoutComponent implements OnInit {
+  public isMenubarActive:boolean=false;
 
   constructor() {}
 
   ngOnInit() {
+  }
+
+  onClick($event){
+    /* We dont care about current value of isMenubarActive we just change it so angular trigger 
+    * its changes detection cycle*/
+    this.isMenubarActive=!this.isMenubarActive;
   }
 
 }

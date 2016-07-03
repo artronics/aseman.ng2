@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, Input } from "@angular/core";
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 import { NgClass } from "@angular/common";
@@ -15,7 +15,20 @@ import { MenuList } from "../../shared/menu/MenuList";
 })
 export class MenubarComponent implements OnInit {
   public menubarTitles:string[]=[];
-  public isActive:boolean=false;
+  private _isActive:boolean=false;
+
+  private _layoutClick:boolean;
+
+  /**
+   * Each time we receive a layout click it means we should cancel menu display.
+   * The parameter has no use. It is there so parent component can change it so angular
+   * trigger its change detection cycle.
+   * @param value
+   */
+  @Input()
+  set layoutClick(value:boolean) {
+    this.cancelDisplay();
+  }
 
   private _menubarService:MenubarService;
 
@@ -25,19 +38,24 @@ export class MenubarComponent implements OnInit {
     this._menubarService=menubarService;
   }
 
+  private cancelDisplay(){
+    this._isActive=false;
+    this._selectedItemIndex=-1;
+  }
+
   ngOnInit() {
     this.menubarTitles=this._menubarService.getTitles();
   }
 
   onClick(inx:number,$event){
     $event.stopPropagation();
-    this.isActive=!this.isActive;
+    this._isActive=!this._isActive;
 
-    this._selectedItemIndex= this.isActive ? inx:-1;
+    this._selectedItemIndex= this._isActive ? inx:-1;
   }
 
   onMouseenter(inx:number){
-    if (this.isActive){
+    if (this._isActive){
       this._selectedItemIndex=inx;
     }
   }
@@ -55,4 +73,9 @@ export class MenubarComponent implements OnInit {
   get selectedItemIndex():number {
     return this._selectedItemIndex;
   }
+
+  get isActive():boolean {
+    return this._isActive;
+  }
+
 }
