@@ -163,17 +163,24 @@ describe('Component: Menubar', () => {
     expect(menuList.title).toBe('Foo');
   });
 
-  it('should get MenuList from menu service and feed it to MenuContainerWidgetComponent',()=>{
-
+  it('should stopPropagation in click event, so layout can deactive menu on click events',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement=fixture.nativeElement.querySelector('asm-menubar>ul>li');
+    li.click();
+    expect(fixture.componentInstance.receivedClick).toBe(false);
   });
 
 });
 @Component({
   selector: 'test',
-  template: `<asm-menubar></asm-menubar>`,
+  template: `<div (click)="onClick()"><asm-menubar></asm-menubar></div>`,
   directives: [MenubarComponent]
 })
 class MenubarTestComponent {
+  receivedClick=false;
+  onClick(){
+    this.receivedClick=true;
+  }
 }
 
 class MenubarServiceMock extends MenubarService {

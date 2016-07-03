@@ -29,7 +29,8 @@ export class MenubarComponent implements OnInit {
     this.menubarTitles=this._menubarService.getTitles();
   }
 
-  onClick(inx:number){
+  onClick(inx:number,$event){
+    $event.stopPropagation();
     this.isActive=!this.isActive;
 
     this._selectedItemIndex= this.isActive ? inx:-1;
@@ -47,7 +48,7 @@ export class MenubarComponent implements OnInit {
 
   getMenuList(inx:number):MenuList{
     let title:string=this.menubarTitles[inx];
-    
+
     return this._menubarService.getMenuListByTitle(title);
   }
 
