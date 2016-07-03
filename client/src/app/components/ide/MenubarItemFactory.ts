@@ -32,6 +32,7 @@ export class MenubarItemFactory{
 
     let copy:ActionMenuItem=new ActionMenuItem('copy','Copy');
     let paste:ActionMenuItem=new ActionMenuItem('paste','Paste');
+    paste.enable=false;
 
     edit.addMenuItem(copy);
     edit.addMenuItem(paste);

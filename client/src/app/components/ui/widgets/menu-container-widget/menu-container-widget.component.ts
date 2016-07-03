@@ -31,7 +31,7 @@ export class MenuContainerWidgetComponent implements OnInit {
   }
 
   onMouseenter(inx:number){
-    this._selectedItemIndex=inx;
+    this._selectedItemIndex= this.isDisabled(inx) ? -1:inx;
   }
   onMouseleave(){
     this._selectedItemIndex=-1;
@@ -39,6 +39,10 @@ export class MenuContainerWidgetComponent implements OnInit {
 
   isSelected(inx:number):boolean{
     return (this._selectedItemIndex===inx);
+  }
+
+  isDisabled(inx:number):boolean{
+    return !this._menuItems[inx].enable;
   }
 
   get menuItems():BaseMenuItem[] {

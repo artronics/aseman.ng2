@@ -46,7 +46,7 @@ describe('Component: MenuContainerWidget', () => {
   it('should populate li elements based on menuItems',()=>{
     fixture.detectChanges();
     let lis=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
-    expect(lis.length).toBe(2);
+    expect(lis.length).toBe(3);
   });
 
   it('should change selectedItemIndex to index onMouseenter',()=>{
@@ -78,6 +78,26 @@ describe('Component: MenuContainerWidget', () => {
     fixture.detectChanges();
     expect(li[0].classList).toContain('selected');
   });
+  it('should disable hover (mouseenter) for disabled items',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
+
+    expect(li[2].classList).not.toContain('selected');
+    li[2].dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+    expect(li[2].classList).not.toContain('selected');
+    expect(el.selectedItemIndex).toBe(-1);
+  });
+  it('should add "disabled-menu-item" class to disabled items',()=>{
+    fixture.detectChanges();
+    let li:HTMLElement[]=fixture.nativeElement.querySelectorAll('asm-menu-container-widget>ul>li');
+
+    expect(li[2].classList).toContain('disabled');
+  });
+
+  xit('should feed MenuItemWidgetComponent with corresponding BaseMenuItem',()=>{
+
+  });
 });
 
 @Component({
@@ -92,6 +112,10 @@ class MenuContainerWidgetTestComponent{
     let items:BaseMenuItem[]=[];
     items.push(new ActionMenuItem('foo','Foo Action'));
     items.push(new ActionMenuItem('bar','Bar Action'));
+
+    let disabledItem = new ActionMenuItem('disabled', 'Disabled Action');
+    disabledItem.enable=false;
+    items.push(disabledItem);
 
     this.menuList=new MenuList('menuList','Menu List',items);
   }

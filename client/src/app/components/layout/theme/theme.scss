@@ -7,6 +7,13 @@
 .asm_menu{
   background-color: $menu-background-color;
   opacity: .8;
+  li{
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .disabled{
+    color: grey;
+  }
 }
 
 .asm_theme {

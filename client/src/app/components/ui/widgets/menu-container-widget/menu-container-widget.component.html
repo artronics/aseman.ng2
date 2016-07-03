@@ -4,7 +4,8 @@
       (mouseenter)="onMouseenter(inx)"
       (mouseleave)="onMouseleave()"
       [class.selected]="isSelected(inx)"
+      [class.disabled]="isDisabled(inx)"
   >
-    <asm-menu-item-widget></asm-menu-item-widget>
+    <asm-menu-item-widget [menuItem]="item"></asm-menu-item-widget>
   </li>
 </ul>
