@@ -42,6 +42,7 @@ const barrels: string[] = [
   'app/components/ide',
   'app/components/ui/widgets/menu-item-widget',
   'app/components/ui/widgets/menu-container-widget',
+  'app/components/ui/widgets/dialog-widget',
   /** @cli-barrel */
 ];
 
