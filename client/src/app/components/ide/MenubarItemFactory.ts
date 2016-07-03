@@ -1,6 +1,7 @@
 import { MenuList } from "../../shared/menu/MenuList";
 import { ActionMenuItem } from "../../shared/menu/ActionMenuItem";
 import { Injectable } from "@angular/core";
+import { Action } from "../../shared/action/Action";
 
 /**
  * This is not a factory but a class to separate the creation of menubar items and menuLists. The purpose is to encapsulate the process.
@@ -19,8 +20,8 @@ export class MenubarItemFactory{
   private createFile(){
     let file:MenuList=new MenuList('file','File');
 
-    let newItem:ActionMenuItem=new ActionMenuItem('new','New');
-    let open:ActionMenuItem=new ActionMenuItem('open','Open');
+    let newItem:ActionMenuItem=new ActionMenuItem('new','New',new Action('new',()=>{}));
+    let open:ActionMenuItem=new ActionMenuItem('open','Open',new Action('open',()=>{}));
 
     file.addMenuItem(newItem);
     file.addMenuItem(open);
@@ -30,8 +31,8 @@ export class MenubarItemFactory{
   private createEdit(){
     let edit:MenuList=new MenuList('edit','Edit');
 
-    let copy:ActionMenuItem=new ActionMenuItem('copy','Copy');
-    let paste:ActionMenuItem=new ActionMenuItem('paste','Paste');
+    let copy:ActionMenuItem=new ActionMenuItem('copy','Copy',new Action('copy',()=>{}));
+    let paste:ActionMenuItem=new ActionMenuItem('paste','Paste',new Action('paste',()=>{}));
     paste.enable=false;
 
     edit.addMenuItem(copy);

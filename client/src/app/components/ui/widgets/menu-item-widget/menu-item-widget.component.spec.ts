@@ -15,6 +15,7 @@ import {
 import { MenuItemWidgetComponent } from "./menu-item-widget.component";
 import { BaseMenuItem } from "../../../../shared/menu/BaseMenuItem";
 import { ActionMenuItem } from "../../../../shared/menu/ActionMenuItem";
+import { Action } from "../../../../shared/action/Action";
 
 describe('Component: MenuItemWidget', () => {
   let builder:TestComponentBuilder;
@@ -44,6 +45,6 @@ describe('Component: MenuItemWidget', () => {
   directives:[MenuItemWidgetComponent]
 })
 class MenuItemWidgetTestComponent{
-  actionItem:BaseMenuItem=new ActionMenuItem('foo','Foo Action');
+  actionItem:BaseMenuItem=new ActionMenuItem('foo','Foo Action',new Action('foo',()=>{}));
 }
 

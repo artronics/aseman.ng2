@@ -16,6 +16,7 @@ import { MenuContainerWidgetComponent } from "./menu-container-widget.component"
 import { BaseMenuItem } from "../../../../shared/menu/BaseMenuItem";
 import { ActionMenuItem } from "../../../../shared/menu/ActionMenuItem";
 import { MenuList } from "../../../../shared/menu/MenuList";
+import { Action } from "../../../../shared/action/Action";
 
 describe('Component: MenuContainerWidget', () => {
   let builder:TestComponentBuilder;
@@ -110,10 +111,10 @@ class MenuContainerWidgetTestComponent{
   constructor(){
     /* populate some menu items*/
     let items:BaseMenuItem[]=[];
-    items.push(new ActionMenuItem('foo','Foo Action'));
-    items.push(new ActionMenuItem('bar','Bar Action'));
+    items.push(new ActionMenuItem('foo','Foo Action',new Action('foo',()=>{})));
+    items.push(new ActionMenuItem('bar','Bar Action',new Action('bar',()=>{})));
 
-    let disabledItem = new ActionMenuItem('disabled', 'Disabled Action');
+    let disabledItem = new ActionMenuItem('disabled', 'Disabled Action',new Action('disabled',()=>{}));
     disabledItem.enable=false;
     items.push(disabledItem);
 
