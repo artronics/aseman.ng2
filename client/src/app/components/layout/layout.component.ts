@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MenubarComponent } from "../menubar/menubar.component";
+import { DialogWidgetComponent } from "../ui/widgets/dialog-widget/dialog-widget.component";
 
 @Component({
   moduleId: module.id,
@@ -7,10 +8,11 @@ import { MenubarComponent } from "../menubar/menubar.component";
   templateUrl: 'layout.component.html',
   styleUrls: ['layout.component.css'],
   encapsulation:ViewEncapsulation.None,
-  directives:[MenubarComponent]
+  directives:[MenubarComponent,DialogWidgetComponent]
 })
 export class LayoutComponent implements OnInit {
   public isMenubarActive:boolean=false;
+  public showDialog:boolean=false;
 
   constructor() {}
 
@@ -18,9 +20,10 @@ export class LayoutComponent implements OnInit {
   }
 
   onClick($event){
-    /* We dont care about current value of isMenubarActive we just change it so angular trigger 
+    /* We dont care about current value of isMenubarActive we just change it so angular trigger
     * its changes detection cycle*/
     this.isMenubarActive=!this.isMenubarActive;
+    this.showDialog=true;
   }
 
 }

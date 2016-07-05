@@ -1,3 +1,6 @@
 <div class="asm_layout-container asm_theme" (click)="onClick($event)">
   <asm-menubar [layoutClick]="isMenubarActive"></asm-menubar>
+  <div *ngIf="showDialog">
+    <asm-dialog-widget></asm-dialog-widget>
+  </div>
 </div>
