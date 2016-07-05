@@ -22,4 +22,27 @@
     background-color: $hover-background-color;
   }
 
+  .border-radius{
+    border-radius: 5px;
+  }
+
+  .dialog-container{
+    box-shadow:4px 7px 10px black;
+  }
+
+}
+.resize{
+  .ns-resize{
+    cursor: ns-resize;
+  }
+  .ew-resize{
+    cursor: ew-resize;
+  }
+  .nwse-resize{
+    cursor: nwse-resize;
+  }
+  .nesw-resize{
+    cursor: nesw-resize;
+  }
+
 }
