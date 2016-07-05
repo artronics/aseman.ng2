@@ -42,8 +42,11 @@ html, body {
 }
 
 .asm_layout-container{
-  height:200px;
-  background-color: blue;
+  height: 100vh;
+  background-color: red;//debug, find layout sinks
+}
+.asm_layout-main{
+  background-color: $ide-base-background-color;
 }
 
 .asm_flex-column{
@@ -59,7 +62,7 @@ html, body {
 }
 
 
-$resize-anchor-size:20px;
+$resize-anchor-size:6px;
 .resize-anchor-top,.resize-anchor-bot,
 .resize-anchor-top-mid,.resize-anchor-top-mid,
 .resize-anchor-top-left,.resize-anchor-top-right,
