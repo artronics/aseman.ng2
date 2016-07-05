@@ -10,10 +10,19 @@
   width: 50vw;
   top: 25vh;
   left:25vw;
-  background-color: red;
 }
 
 .resize-anchor-top-right,.resize-anchor-bot-right,.resize-anchor-mid-right{
   margin-left: auto;
 }
+.dialog-ok-cancel{
+  margin-top:auto;
+}
+.dialog-close-bar{
+  width:100%;
+}
 
+.dialog-close-icon{
+  float: right;
+  margin-right: 1em;
+}

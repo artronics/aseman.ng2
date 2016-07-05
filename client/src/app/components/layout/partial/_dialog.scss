@@ -1,0 +1,27 @@
+@import "../theme/theme";
+
+$resize-anchor-size:6px;
+
+.dialog-container{
+  background-color: $dialog-base-background-color;
+}
+.resize-anchor-top,.resize-anchor-bot,
+.resize-anchor-top-mid,.resize-anchor-top-mid,
+.resize-anchor-top-left,.resize-anchor-top-right,
+.resize-anchor-bot-left,.resize-anchor-bot-right
+{
+  height: $resize-anchor-size;
+  min-height: $resize-anchor-size;
+  max-height: $resize-anchor-size;
+}
+.resize-anchor-top-left,.resize-anchor-top-right,
+.resize-anchor-bot-left,.resize-anchor-bot-right,
+.resize-anchor-mid-left,.resize-anchor-mid-right
+{
+  width:$resize-anchor-size;
+  min-width:$resize-anchor-size;
+  max-width:$resize-anchor-size;
+}
+.resize-anchor-top-mid,.resize-anchor-bot-mid{
+  width:100%;
+}

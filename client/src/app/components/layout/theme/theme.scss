@@ -44,5 +44,12 @@
   .nesw-resize{
     cursor: nesw-resize;
   }
+}
 
+$dialog-base-background-color:$ide-base-background-color;
+
+.dialog-close-bar{
+  background-color: $dialog-base-background-color;
+  height: 1em;
+  min-height:1em;
 }
