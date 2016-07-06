@@ -13,7 +13,7 @@ $dialog-window-radius:5px;
     padding-right: 1em;
   }
   .disabled{
-    color: grey;
+    color: $disabled-text-color;
   }
 }
 
@@ -48,12 +48,6 @@ $dialog-window-radius:5px;
 }
 
 $dialog-base-background-color:$ide-base-background-color;
-
-.dialog-title-bar {
-  background-color: $dialog-base-background-color;
-  height: 1em;
-  min-height:1em;
-}
 
 .resize-anchor-top-left{
   border-radius: $dialog-window-radius 0 0 0;

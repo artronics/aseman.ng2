@@ -4,4 +4,12 @@
 }
 .title-bar-blur>*{
   background-color: $title-bar-blur-background-color!important;
+  color: $disabled-text-color;
 }
+.asm_title-bar {
+  //width:100%;
+  background-color: $dialog-base-background-color;
+  height: 1em;
+  min-height:1em;
+}
+

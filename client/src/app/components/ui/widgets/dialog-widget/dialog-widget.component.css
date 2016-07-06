@@ -18,11 +18,7 @@
 .dialog-ok-cancel{
   margin-top:auto;
 }
-.dialog-title-bar {
-  width:100%;
-}
 
-.dialog-close-icon{
-  float: right;
-  margin-right: 1em;
-}
+/*.dialog-close-icon{*/
+  /*margin-left: auto;*/
+/*}*/

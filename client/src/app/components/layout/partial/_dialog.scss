@@ -5,6 +5,9 @@ $resize-anchor-size:6px;
 .dialog-container{
   background-color: $dialog-base-background-color;
 }
+.dialog-content{
+  padding: 1em 1em 1em 1em;
+}
 .resize-anchor-top,.resize-anchor-bot,
 .resize-anchor-top-mid,.resize-anchor-top-mid,
 .resize-anchor-top-left,.resize-anchor-top-right,

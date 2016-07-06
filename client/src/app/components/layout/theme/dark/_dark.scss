@@ -10,7 +10,8 @@ $hover-background-color:rgb(56,143,248);
 
 $title-bar-focus-background-color:rgb(66,77,95);
 $title-bar-blur-background-color:darken($title-bar-focus-background-color,5%);
-//$title-bar-blur-background-color:red;
+
+$disabled-text-color:grey;
 
 $menubar-normal-color:white;
 $menubar-height:1em;

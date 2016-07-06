@@ -14,10 +14,10 @@
            (mousedown)="onTransformation({type:'TOP_RIGHT',ele:transformable,event:$event})"
       ></div>
     </div>
-    <div class="dialog-title-bar" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}"
+    <div class="asm_title-bar flex-row-container" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}"
          (mousedown)="onTransformation({type:'POSITION',ele:transformable,event:$event})"
     >
-      <p>dialog<i class="dialog-close-icon fa fa-close" (click)="cancel()"></i></p>
+      <p>dialog</p><i class="dialog-close-icon fa fa-close" (click)="cancel()"></i>
     </div>
 
 
