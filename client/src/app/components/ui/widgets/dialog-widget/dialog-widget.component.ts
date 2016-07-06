@@ -49,14 +49,37 @@ export class DialogWidgetComponent implements OnInit {
 
   onTransformation(event){
     this._isTransforming=true;
+    this._transformation.ele=event.ele;
+    this._transformation.initPoint=new Point(event.event.screenX,event.event.screenY);
     switch (event.type){
       case 'POSITION':
         this._transformation.type=TransformationType.POSITION;
-        console.log('kir');
+        break;
+      case 'TOP':
+        this._transformation.type=TransformationType.TOP;
+        break;
+      case 'RIGHT':
+        this._transformation.type=TransformationType.RIGHT;
+        break;
+      case 'BOTTOM':
+        this._transformation.type=TransformationType.BOTTOM;
+        break;
+      case 'LEFT':
+        this._transformation.type=TransformationType.LEFT;
+        break;
+      case 'BOTTOM_RIGHT':
+        this._transformation.type=TransformationType.BOTTOM_RIGHT;
+        break;
+      case 'BOTTOM_LEFT':
+        this._transformation.type=TransformationType.BOTTOM_LEFT;
+        break;
+      case 'TOP_RIGHT':
+        this._transformation.type=TransformationType.TOP_RIGHT;
+        break;
+      case 'TOP_LEFT':
+        this._transformation.type=TransformationType.TOP_LEFT;
         break;
     }
-    this._transformation.ele=event.ele;
-    this._transformation.initPoint=new Point(event.event.screenX,event.event.screenY);
   }
 
   onFocus(event){

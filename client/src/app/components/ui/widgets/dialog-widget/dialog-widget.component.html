@@ -4,9 +4,15 @@
 
   >
     <div class="resize-anchor-top asm_flex-row" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}">
-      <div class="resize-anchor-top-left nwse-resize"></div>
-      <div class="resize-anchor-top-mid ns-resize"></div>
-      <div class="resize-anchor-top-right nesw-resize"></div>
+      <div class="resize-anchor-top-left nwse-resize"
+           (mousedown)="onTransformation({type:'TOP_LEFT',ele:transformable,event:$event})"
+      ></div>
+      <div class="resize-anchor-top-mid ns-resize"
+           (mousedown)="onTransformation({type:'TOP',ele:transformable,event:$event})"
+      ></div>
+      <div class="resize-anchor-top-right nesw-resize"
+           (mousedown)="onTransformation({type:'TOP_RIGHT',ele:transformable,event:$event})"
+      ></div>
     </div>
     <div class="dialog-title-bar" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}"
          (mousedown)="onTransformation({type:'POSITION',ele:transformable,event:$event})"
@@ -16,20 +22,30 @@
 
 
     <div class="dialog-mid-row asm_flex-row asm_flex-grow">
-      <div class="resize-anchor-mid-left ew-resize"></div>
+      <div class="resize-anchor-mid-left ew-resize"
+           (mousedown)="onTransformation({type:'LEFT',ele:transformable,event:$event})"
+      ></div>
       <div class="dialog-content-container asm_flex-column asm_flex-grow">
         <div class="dialog-content asm_flex-grow">
           <h2>dialog container</h2>
         </div>
         <div class="dialog-ok-cancel"><p>ok</p></div>
       </div>
-      <div class="resize-anchor-mid-right ew-resize"></div>
+      <div class="resize-anchor-mid-right ew-resize"
+           (mousedown)="onTransformation({type:'RIGHT',ele:transformable,event:$event})"
+      ></div>
     </div>
 
     <div class="resize-anchor-bot asm_flex-row border-radius">
-      <div class="resize-anchor-bot-left border-radius nesw-resize"></div>
-      <div class="resize-anchor-bot-mid ns-resize"></div>
-      <div class="resize-anchor-bot-right border-radius nwse-resize"></div>
+      <div class="resize-anchor-bot-left border-radius nesw-resize"
+           (mousedown)="onTransformation({type:'BOTTOM_LEFT',ele:transformable,event:$event})"
+      ></div>
+      <div class="resize-anchor-bot-mid ns-resize"
+           (mousedown)="onTransformation({type:'BOTTOM',ele:transformable,event:$event})"
+      ></div>
+      <div class="resize-anchor-bot-right border-radius nwse-resize"
+           (mousedown)="onTransformation({type:'BOTTOM_RIGHT',ele:transformable,event:$event})"
+      ></div>
     </div>
   </div>
 </div>
