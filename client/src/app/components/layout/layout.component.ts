@@ -12,7 +12,7 @@ import { DialogWidgetComponent } from "../ui/widgets/dialog-widget/dialog-widget
 })
 export class LayoutComponent implements OnInit {
   public isMenubarActive:boolean=false;
-  public showDialog:boolean=false;
+  public displayDialog:boolean;
 
   constructor() {}
 
@@ -23,7 +23,14 @@ export class LayoutComponent implements OnInit {
     /* We dont care about current value of isMenubarActive we just change it so angular trigger
     * its changes detection cycle*/
     this.isMenubarActive=!this.isMenubarActive;
-    this.showDialog=true;
+  }
+
+  onDialogCanceled(){
+    this.displayDialog=false;
+  }
+  
+  showDialog(){
+    this.displayDialog=true;
   }
 
 }

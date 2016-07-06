@@ -1,5 +1,6 @@
 @import "dark/dark";
 
+$dialog-window-radius:5px;
 .asm_menubar {
   background-color: $menubar-background-color;
 }
@@ -23,7 +24,7 @@
   }
 
   .border-radius{
-    border-radius: 5px;
+    border-radius: $dialog-window-radius;
   }
 
   .dialog-container{
@@ -48,8 +49,15 @@
 
 $dialog-base-background-color:$ide-base-background-color;
 
-.dialog-close-bar{
+.dialog-title-bar {
   background-color: $dialog-base-background-color;
   height: 1em;
   min-height:1em;
+}
+
+.resize-anchor-top-left{
+  border-radius: $dialog-window-radius 0 0 0;
+}
+.resize-anchor-top-right{
+  border-radius: 0  $dialog-window-radius 0 0;
 }

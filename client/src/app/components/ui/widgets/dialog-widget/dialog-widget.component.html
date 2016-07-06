@@ -1,16 +1,20 @@
-<div class="dialog-transparent-container">
-  <div class="dialog-container asm_flex-column border-radius resize">
-    <div class="resize-anchor-top asm_flex-row border-radius">
-      <div class="resize-anchor-top-left border-radius nwse-resize"></div>
+<div *ngIf="displayDialog" class="dialog-transparent-container" (click)="onBlur()">
+  <div class="dialog-container asm_flex-column border-radius resize" (click)="onFocus($event)"
+
+  >
+    <div class="resize-anchor-top asm_flex-row" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}">
+      <div class="resize-anchor-top-left nwse-resize"></div>
       <div class="resize-anchor-top-mid ns-resize"></div>
-      <div class="resize-anchor-top-right border-radius nesw-resize"></div>
+      <div class="resize-anchor-top-right nesw-resize"></div>
+    </div>
+    <div class="dialog-title-bar" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}">
+      <p>dialog<i class="dialog-close-icon fa fa-close" (click)="cancel()"></i></p>
     </div>
 
 
     <div class="dialog-mid-row asm_flex-row asm_flex-grow">
       <div class="resize-anchor-mid-left ew-resize"></div>
       <div class="dialog-content-container asm_flex-column asm_flex-grow">
-        <div class="dialog-close-bar"><i class="dialog-close-icon fa fa-close"></i></div>
         <div class="dialog-content asm_flex-grow">
           <h2>dialog container</h2>
         </div>

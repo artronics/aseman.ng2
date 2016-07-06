@@ -1,0 +1,7 @@
+@import "../theme/theme";
+.title-bar-focus>*{
+  background-color: $title-bar-focus-background-color!important;
+}
+.title-bar-blur>*{
+  background-color: $title-bar-blur-background-color!important;
+}
