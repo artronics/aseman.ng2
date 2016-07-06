@@ -1,5 +1,6 @@
-<div *ngIf="displayDialog" class="dialog-transparent-container" (click)="onBlur()">
-  <div class="dialog-container asm_flex-column border-radius resize" (click)="onFocus($event)"
+<div *ngIf="displayDialog" class="dialog-transparent-container"
+     (click)="onBlur()" (mouseup)="onEndTransformation()" (mousemove)="onTransforming($event)">
+  <div class="dialog-container asm_flex-column border-radius resize" #transformable (click)="onFocus($event)"
 
   >
     <div class="resize-anchor-top asm_flex-row" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}">
@@ -7,7 +8,9 @@
       <div class="resize-anchor-top-mid ns-resize"></div>
       <div class="resize-anchor-top-right nesw-resize"></div>
     </div>
-    <div class="dialog-title-bar" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}">
+    <div class="dialog-title-bar" [ngClass]="{'title-bar-focus':hasFocus,'title-bar-blur':hasBlur()}"
+         (mousedown)="onTransformation({type:'POSITION',ele:transformable,event:$event})"
+    >
       <p>dialog<i class="dialog-close-icon fa fa-close" (click)="cancel()"></i></p>
     </div>
 

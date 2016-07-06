@@ -2,7 +2,15 @@
 
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
-import { describe, expect, it, inject, TestComponentBuilder } from "@angular/core/testing";
+import {
+  describe,
+  expect,
+  it,
+  inject,
+  TestComponentBuilder,
+  ComponentFixture,
+  addProviders
+} from "@angular/core/testing";
 import { DialogWidgetComponent } from "./dialog-widget.component";
 
 describe('Component: DialogWidget', () => {
@@ -64,6 +72,31 @@ describe('Component: DialogWidget', () => {
         closeX.click();
         fixture.detectChanges();
         expect(fixture.componentInstance.dialogHasBeenCanceled).toBe(true);
+      });
+  }));
+});
+
+describe('Component: DialogWidget Transformation',()=>{
+  let cm:DialogWidgetComponent;
+  beforeEach(()=>{
+    addProviders([TestComponentBuilder]);
+    cm=new DialogWidgetComponent;
+  });
+  it('should set isTransforming to false by default',()=>{
+    expect(cm.isTransforming).toBe(false);
+  });
+  it('should change position on mousedown on .dialog-title-bar',inject([TestComponentBuilder],(tcb)=>{
+    return tcb
+      .createAsync(DialogWidgetTestComponent)
+      .then((fixture:ComponentFixture<any>)=>{
+        fixture.detectChanges();
+        let natCom:DialogWidgetComponent=fixture.debugElement.query(By.directive(DialogWidgetComponent)).componentInstance;
+        let ele=fixture.nativeElement.querySelector('.dialog-title-bar');
+        ele.dispatchEvent(new Event('mousedown'));
+        fixture.detectChanges();
+        console.log(natCom);
+        console.log(ele);
+        expect(natCom.isTransforming).toBe(false);
       });
   }));
 });

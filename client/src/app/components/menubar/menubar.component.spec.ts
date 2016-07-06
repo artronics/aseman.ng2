@@ -2,16 +2,7 @@
 
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-  async,
-  inject,
-  TestComponentBuilder,
-  ComponentFixture
-} from "@angular/core/testing";
+import { beforeEach, expect, it, async, inject, TestComponentBuilder, ComponentFixture } from "@angular/core/testing";
 import { MenubarComponent } from "./menubar.component";
 import { MenubarService } from "../../services/menu/menubar.service";
 import { MenuList } from "../../shared/menu/MenuList";
@@ -19,7 +10,7 @@ import { ActionMenuItem } from "../../shared/menu/ActionMenuItem";
 import { MenubarItemFactory } from "../ide/MenubarItemFactory";
 import { Action } from "../../shared/action/Action";
 
-describe('Component: Menubar', () => {
+xdescribe('Component: Menubar', () => {
   let builder:TestComponentBuilder;
   let fixture:ComponentFixture<any>;
   let component:MenubarComponent;
