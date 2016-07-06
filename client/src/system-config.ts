@@ -43,6 +43,8 @@ const barrels: string[] = [
   'app/components/ui/widgets/menu-item-widget',
   'app/components/ui/widgets/menu-container-widget',
   'app/components/ui/widgets/dialog-widget',
+  'app/components/ui/widgets/file-tree-widget',
+  'app/components/ui/widgets/file-tree-node-widget',
   /** @cli-barrel */
 ];
 
