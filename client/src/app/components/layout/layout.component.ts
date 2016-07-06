@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MenubarComponent } from "../menubar/menubar.component";
 import { DialogWidgetComponent } from "../ui/widgets/dialog-widget/dialog-widget.component";
+import { FileTreeWidgetComponent } from "../ui/widgets/file-tree-widget/file-tree-widget.component";
 
 @Component({
   moduleId: module.id,
@@ -8,7 +9,7 @@ import { DialogWidgetComponent } from "../ui/widgets/dialog-widget/dialog-widget
   templateUrl: 'layout.component.html',
   styleUrls: ['layout.component.css'],
   encapsulation:ViewEncapsulation.None,
-  directives:[MenubarComponent,DialogWidgetComponent]
+  directives:[MenubarComponent,DialogWidgetComponent,FileTreeWidgetComponent]
 })
 export class LayoutComponent implements OnInit {
   public isMenubarActive:boolean=false;
