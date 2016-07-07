@@ -18,6 +18,8 @@ module.exports = function(defaults) {
       'font-awesome/css/font-awesome.min.css',
       'font-awesome/css/font-awesome.css.map',
       'font-awesome/fonts/*',
+      
+      'socket.io-client/socket.io.js'
     ]
   });
 };
